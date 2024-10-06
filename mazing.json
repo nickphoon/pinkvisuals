@@ -1,0 +1,11 @@
+[
+    {"Name": "Depth-First Search (DFS)", "Best": "\\(b^d\\)", "Average": "\\(b^d\\)", "Worst": "\\(b^d\\)"},
+    {"Name": "Breadth-First Search (BFS)", "Best": "\\(b^d\\)", "Average": "\\(b^d\\)", "Worst": "\\(b^d\\)"},
+    {"Name": "Dijkstra's Algorithm", "Best": "\\((V + E)\\log V\\)", "Average": "\\((V + E)\\log V\\)", "Worst": "\\((V + E)\\log V\\)"},
+    {"Name": "A* Search", "Best": "\\(1\\)", "Average": "\\(b^d\\)", "Worst": "\\(b^d\\)"},
+    {"Name": "Greedy Best-First Search", "Best": "\\(1\\)", "Average": "\\(b^d\\)", "Worst": "\\(b^d\\)"},
+    {"Name": "Recursive Division", "Best": "\\(n^2\\)", "Average": "\\(n^2\\)", "Worst": "\\(n^2\\)"},
+    {"Name": "Prim's Algorithm", "Best": "\\((V + E)\\log V\\)", "Average": "\\((V + E)\\log V\\)", "Worst": "\\((V + E)\\log V\\)"},
+    {"Name": "Kruskal's Algorithm", "Best": "\\(E\\log E\\)", "Average": "\\(E\\log E\\)", "Worst": "\\(E\\log E\\)"},
+    {"Name": "Hunt-and-Kill Algorithm", "Best": "\\(n^2\\)", "Average": "\\(n^2\\)", "Worst": "\\(n^2\\)"}
+]

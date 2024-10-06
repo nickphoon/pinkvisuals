@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hash Table Visualizer</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/dataStructureHashTable.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Home</a>
+        <h1 style="font-family: Monospace;">Hash Table</h1>
+        <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+    </nav>
+    
+    <script>
+        function resetPage() {
+            location.reload(); // Reload the current page
+        }
+    </script>
+    <!-- heading -->
+    <header>
+        <h1 style="text-align: center;">Hash Table Visualizer</h1>
+    </header>
+
+    <!-- CODE GOES HERE -->
+    <div class="container">
+        <div class="array-container" id="array-container"></div>
+        <div class="array-container" id="second-array-container"></div>
+        <div class="button-container">
+            <button id="spawn-button" class="spawn-button">Spawn Array </button>
+        </div>
+    </div>
+    <div class="workings-container">
+        <p>
+            A <b>hash table</b>, aka <b>hash map</b>, is a data structure that implements an associative array or
+            dictionary. It is an abstract data type that <mark>maps keys to values</mark>
+        </p>
+        <p>
+            Ideally, the hash function will assign each key to a unique bucket, but most hash tables designs employ an
+            <b>imperfect</b> hash function, which might cause <mark>hash collisions</mark> where the hash function
+            generates the same index for more than one key. Such collisions are typically accomodated in some way
+        </p>
+        <p>
+            Since we are using a size 13 hash table, the hash function we will be using is:
+        </p>
+        <p>
+            \(h(k)=k\mod m\)
+        </p>
+        <p>
+            Where \(k=key\) and \(m=sizeOfTable\)
+        </p>
+        <p>
+            Time complexity of a hash table:
+        </p>
+        <p>
+            Average of \(\Theta(1)\); worst case of \(O(n)\)
+        </p>
+        <div class="reset-button-container">
+            <button id="reset-button" class="reset-button">Reset</button>
+        </div>
+    </div>
+
+    <!-- CODE ENDS HERE -->
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="js/dataStructureHashTable.js"></script>
+    <script src="js/mathjax-config.js" async></script>
+    <!-- <script type="text/javascript" id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script> -->
+</body>
+
+</html>

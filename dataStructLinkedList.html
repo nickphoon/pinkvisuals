@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		
+		<!-- CSS FILE -->
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" href="css/dataStructLinkedList.css" />
+
+		<title>Linked List Visualization</title>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="home.html">Home</a>
+			<h1 style="font-family: Monospace;">Linked List</h1>
+			<button class="btn btn-danger" onclick="resetPage()">Reset</button>
+		</nav>
+	
+		<script>
+			function resetPage() {
+				location.reload(); // Reload the current page
+			}
+		</script>
+
+	
+
+		<main>
+			<!-- Linked List -->
+			<section class="list" id="list"></section>
+
+			<!-- Error Messages -->
+			<section class="errors">
+				<div class="error-message">
+					<p id="error"></p>
+				</div>
+			</section>
+
+			<!-- User Input Buttons -->
+			<section class="operations">
+				<div class="wrapper">
+                    <div>
+						<button class="button" id="add-btn">Add</button>
+						<input type="number" placeholder="Data" />
+					</div>
+
+                    <div>
+						<button class="button" id="insert-btn">Insert</button>
+						<input type="number" placeholder="Index" />
+						<input type="number" placeholder="Data" />
+					</div>
+
+					<div>
+						<button class="button" id="set-btn">Set</button>
+						<input type="number" placeholder="Index" />
+						<input type="number" placeholder="Data" />
+					</div>
+
+					<div>
+						<button class="button" id="remove-btn">Remove</button>
+						<input type="number" placeholder="Index" />
+						<input type="number" placeholder="Data" />
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="js/dataStructLinkedList.js"></script>
+	</body>
+</html>

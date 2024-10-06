@@ -1,0 +1,56 @@
+body {
+    /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+    height: 100%vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #996666;
+    background-color: #ffcccc
+   
+
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: #cc9999;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.active-button {
+    background-color: #ff33cc;
+    /* You can add more styles here to customize the highlighting effect */
+  }
+
+.box a {
+    text-decoration: none;
+    color: #663333;
+    font-size: 18px;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#myRange {
+    direction: rtl;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}

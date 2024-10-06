@@ -1,0 +1,50 @@
+[
+    {
+        "Name": "Linear Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(n\\)",
+        "Worst": "\\(n\\)"
+    },
+    {
+        "Name": "Binary Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\log n\\)",
+        "Worst": "\\(\\log n\\)"
+    },
+    {
+        "Name": "Jump Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\sqrt{n}\\)",
+        "Worst": "\\(√n\\)"
+    },
+    {
+        "Name": "Interpolation Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\log\\log n\\)",
+        "Worst": "\\(n\\)"
+    },
+    {
+        "Name": "Exponential Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\log n\\)",
+        "Worst": "\\(\\log n\\)"
+    },
+    {
+        "Name": "Hashing",
+        "Best": "\\(1\\)",
+        "Average": "\\(1\\)",
+        "Worst": "\\(n\\)"
+    },
+    {
+        "Name": "Ternary Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\log_3 n\\)",
+        "Worst": "\\(\\log_3 n\\)"
+    },
+    {
+        "Name": "Fibonacci Search",
+        "Best": "\\(1\\)",
+        "Average": "\\(\\log n\\)",
+        "Worst": "\\(\\log n\\)"
+    }
+]

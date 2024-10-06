@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Maze Pathfinding Algorithms</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS FILE -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Home</a>
+        <h1 style="font-family: Monospace;">Pathfinding Algorithm</h1>
+        <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+    </nav>
+
+    <script>
+        function resetPage() {
+            location.reload(); // Reload the current page
+        }
+    </script>
+
+    <header>
+        <br>
+        <h3 style="font-style: italic; text-align: center; font-family: comic sans-serif;">
+            Pathfinding is the plotting, by a computer application, of the shortest route between two points.
+            It is a more practical variant on solving mazes.
+            We will be generating a maze using Maze Generating Algorithm, followed by a Pathfinding
+            Algorithm to solve the maze.
+        </h3>
+        <br>
+    </header>
+
+    <!-- create container to put them side by side, easier to see -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="stepText">
+                    <h3>Step 1: Generate Maze</h3>
+                    <form id="mazeForm">
+                        <div class="form-group">
+                            <label for="mazeNumSize">Number of Rows/Columns</label>
+                            <input type="number" class="form-control" id="mazeNumSize" style="width: 200px;"
+                                placeholder="e.g. 10 = 10 x 10 maze" max="50">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Generate Maze</button>
+                    </form>
+                    <br>
+                </div>
+
+                <!-- Canvas For the maze to draw on -->
+                <canvas class="maze"></canvas>
+            </div>
+            <div class="col">
+                <div id="solutionText">
+                    <h3>Description:</h3>
+                    <p id="solutionContent"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/maze.js"></script>
+
+    <script>
+        // Get the form element and add an event listener for form submission
+        const mazeForm = document.getElementById("mazeForm");
+        mazeForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the values from the input fields
+            const numSize = parseInt(document.getElementById("mazeNumSize").value);
+
+            // Call the maze generation logic with the specified rows and columns
+            generateMaze(numSize);
+
+            document.getElementById("stepText").innerHTML = `
+                <h3>Step 2: Choose Pathfinding Algorithm</h3>
+                <form id="solveForm">
+                    <div class="form-group">
+                        <select class="form-control" id="solveMaze" style="width: 200px;">
+                            <option value="Dijkstra">Dijkstra</option>
+                            <option value="AStar">A*</option>
+                        </select>                    
+                    </div>
+                    <button type="submit" class="btn btn-primary">Solve Maze</button>
+                    <br>
+                </form>
+
+            `;
+
+            const solveForm = document.getElementById("solveForm");
+            solveForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const selectedAlgorithm = document.getElementById("solveMaze").value;
+
+                // Set condition here depending on which algorithm you click.
+                if (selectedAlgorithm == "Dijkstra"){
+                    solveMazeDijkstra();
+                    displayDijkstraSolution();
+                }
+                else if(selectedAlgorithm == "AStar"){
+                    solveMazeAStar();
+                    displayAStarSolution();
+                }
+
+
+                document.getElementById("stepText").innerHTML = `
+                <h3>Step 3: Pathfinding Algorithm</h3>
+                <form id="solveForm">
+                    <div id="purpleSquare" style="display: flex; align-items: center;">
+                        <div style="width: 30px; height: 30px; background-color: purple;"></div>
+                        <span style="margin-right: 5px;">  - represents the traversal of the algorithm</span>
+                    </div>
+                    <div id="greenSquare" style="display: flex; align-items: center;">
+                        <div style="width: 30px; height: 30px; background-color: green;"></div>
+                        <span style="margin-right: 5px;">  - represents the shortest path to the goal</span>
+                    </div>
+                    <br>
+                    <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+                    <br>
+                </form>
+            `;
+
+            });
+
+            function displayDijkstraSolution() {
+                const solutionContent = document.getElementById("solutionContent");
+                // Clear previous solution content so can update new one
+                solutionContent.innerHTML = "";
+
+                // add description, it will change depending on what algorithm i choose.
+                solutionContent.innerHTML += "<h1>Djikstra Algorithm</h1>";
+                solutionContent.innerHTML += "<p>Dijkstra's algorithm can be applied to find the shortest path from a given starting point to a target point while avoiding obstacles or walls.<p>";
+                solutionContent.innerHTML += "<p>Basically, it calculates a few factors before deciding the correct neighbor to proceed. Objective is to find the cheapest cost.";
+                solutionContent.innerHTML += "<h3>Phase 1: Initialization<h3>";
+                solutionContent.innerHTML += "<ul><li>Start at current position</li><li>Set distance to all other cells as infinity</li><li>Mark all cells as unvisited</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 2: Visit Neighbors<h3>";
+                solutionContent.innerHTML += "<ul><li>Look at neighboring cells (up, down, left, right)</li><li>Calculate tentative distance from starting cell to that neighboring cell.</li><li>if newly calculated distance is smaller than current known distance to that cell, update distance</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 3: Current Cell<h3>";
+                solutionContent.innerHTML += "<ul><li>After considering all neighboring cells, you mark current cell as visited</li><li>select the unvisited cell with smallest tentative distance as the new current cell</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 4: Backtrack<h3>";
+                solutionContent.innerHTML += "<ul><li>Repeat the cycle</li><li>Once you reach the exit cell or there are no unvisited cells left, you have found the shortest path.</li><li>To find the actual shortest path, you backtrack from the exit cell to the starting cell</li><li>Highlight path</li></ul>";
+
+
+            }
+
+            function displayAStarSolution() {
+                const solutionContent = document.getElementById("solutionContent");
+                // Clear previous solution content so can update new one
+                solutionContent.innerHTML = "";
+
+                // add description, it will change depending on what algorithm i choose.
+                solutionContent.innerHTML += "<h1>A* Algorithm</h1>";
+                solutionContent.innerHTML += "<p>A* Star algorithm can be applied to find the shortest path from a given point to a target point. But it is different from others as it has a 'Brain'</p>";
+                solutionContent.innerHTML += "<p>It is an extension of Dijkstra Algorithm plus an additional consideration of Heuristics Calculation.</p>";
+                solutionContent.innerHTML += "<h3>Phase 1: Initialization<h3>";
+                solutionContent.innerHTML += "<ul><li>Start at current position</li><li>Mark all cells as unvisited</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 2: Visit Neighbors<h3>";
+                solutionContent.innerHTML += "<ul><li>Look at neighboring cells (up, down, left, right)</li><li>Calculate the heuristics</li><ul><li>Distance while avoiding walls<li>Direct distance to the goal</li></li></ul><li>Algorithm will determine which is best cell to visit next</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 3: Current Cell<h3>";
+                solutionContent.innerHTML += "<ul><li>After considering all neighboring cells, you mark current cell as visited</li><li>select the unvisited cell with smallest tentative distance as the new current cell</li></ul>";
+                solutionContent.innerHTML += "<h3>Phase 4: Backtrack<h3>";
+                solutionContent.innerHTML += "<ul><li>Repeat the cycle</li><li>Once you reach the exit cell or there are no unvisited cells left, you have found the shortest path.</li><li>To find the actual shortest path, you backtrack from the exit cell to the starting cell</li><li>Highlight path</li></ul>";
+             
+
+            }
+        });
+    </script>
+
+
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

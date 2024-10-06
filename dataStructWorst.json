@@ -1,0 +1,72 @@
+[
+    {
+        "Name": "Array",
+        "Access": "\\(1\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(n\\)",
+        "Delete": "\\(n\\)"
+    },
+    {
+        "Name": "Stack",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(1\\)",
+        "Delete": "\\(1\\)"
+    },
+    {
+        "Name": "Queue",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(1\\)",
+        "Delete": "\\(1\\)"
+    },
+    {
+        "Name": "Singly Linked List",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(n\\)",
+        "Delete": "\\(n\\)"
+    },
+    {
+        "Name": "Doubly Linked List",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(1\\)",
+        "Delete": "\\(1\\)"
+    },
+    {
+        "Name": "Hash Table",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(n\\)",
+        "Delete": "\\(n\\)"
+    },
+    {
+        "Name": "Binary Search Tree",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(n\\)",
+        "Delete": "\\(n\\)"
+    },
+    {
+        "Name": "AVL Tree",
+        "Access": "\\(\\log n\\)",
+        "Search": "\\(\\log n\\)",
+        "Insertion": "\\(\\log n\\)",
+        "Delete": "\\(\\log n\\)"
+    },
+    {
+        "Name": "B Tree",
+        "Access": "\\(n\\)",
+        "Search": "\\(n\\)",
+        "Insertion": "\\(n\\)",
+        "Delete": "\\(n\\)"
+    },
+    {
+        "Name": "Red Black Tree",
+        "Access": "\\(\\log n\\)",
+        "Search": "\\(\\log n\\)",
+        "Insertion": "\\(\\log n\\)",
+        "Delete": "\\(\\log n\\)"
+    }
+]

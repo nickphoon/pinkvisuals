@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Compare Maze Pathfinding Algorithms</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS FILE -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Home</a>
+        <a class="navbar-brand" href="pathfindingCompare.html">Compare</a>
+
+        <h1 style="font-family: Monospace;">Pathfinding Algorithm</h1>
+        <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+    </nav>
+
+    <script>
+        function resetPage() {
+            location.reload(); // Reload the current page
+        }
+    </script>
+
+    <header>
+        <br>
+        <h3 style="font-style: italic; text-align: center; font-family: comic sans-serif;">
+           Compare Algorithm
+        </h3>
+        <br>
+    </header>
+
+    <!-- create container to put them side by side, easier to see -->
+    <!-- Remove the second maze form and canvas -->
+<!-- ... Existing HTML code ... -->
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="stepText">
+                    <h3>Maze</h3>
+                    <form id="mazeForm">
+                        <div class="form-group">
+                            <label for="mazeNumSize">Number of Rows/Columns</label>
+                            <input type="number" class="form-control" id="mazeNumSize" style="width: 200px;"
+                                placeholder="e.g. 10 = 10 x 10 maze" max="50">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="generate">Generate Maze</button>
+                    </form>
+                    <br>
+                </div>
+
+                <canvas class="maze"></canvas>
+            </div>
+        </div>
+    </div> -->
+
+    <canvas class="original-maze"></canvas>
+    <canvas class="clone-maze"></canvas>
+
+    <script src="js/maze2.js"></script>
+
+    <!-- <script>
+        // Get the form element and add an event listener for form submission
+        const mazeForm = document.getElementById("mazeForm");
+
+        mazeForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const numSize = parseInt(document.getElementById("mazeNumSize").value);
+
+            // Clone the original canvas element
+            const originalCanvas = document.querySelector(".maze");
+            const clonedCanvas = originalCanvas.cloneNode(true);
+            clonedCanvas.id = "mazeCanvas2"; // Assign a new ID for the cloned canvas
+
+            // Insert the cloned canvas below the original canvas
+            originalCanvas.parentNode.appendChild(clonedCanvas);
+
+            // Generate the maze on both canvases
+            generateMaze(numSize, maze1);
+            // generateMaze(numSize);
+        });
+
+    </script> -->
+
+
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

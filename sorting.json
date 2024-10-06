@@ -1,0 +1,62 @@
+[
+    {
+        "Name": "Selection Sort",
+        "Best": "\\(n^2\\)",
+        "Average": "\\(n^2\\)",
+        "Worst": "\\(n^2\\)"
+    },
+    {
+        "Name": "Insertion Sort",
+        "Best": "\\(n\\)",
+        "Average": "\\(n^2\\)",
+        "Worst": "\\(n^2\\)"
+    },
+    {
+        "Name": "Quick Sort",
+        "Best": "\\(n\\log n\\)",
+        "Average": "\\(n\\log n\\)",
+        "Worst": "\\(n^2\\)"
+    },
+    {
+        "Name": "Merge Sort",
+        "Best": "\\(n\\log n\\)",
+        "Average": "\\(n\\log n\\)",
+        "Worst": "\\(n\\log n\\)"
+    },
+    {
+        "Name": "Heap Sort",
+        "Best": "\\(n\\log n\\)",
+        "Average": "\\(n\\log n\\)",
+        "Worst": "\\(n\\log n\\)"
+    },
+    {
+        "Name": "Radix Sort",
+        "Best": "\\(n\\)",
+        "Average": "\\(n\\cdot\\dfrac{k}{d}\\)",
+        "Worst": "\\(n\\cdot\\dfrac{k}{d}\\)"
+    },
+    {
+        "Name": "Bubble Sort",
+        "Best": "\\(n\\)",
+        "Average": "\\(n^2\\)",
+        "Worst": "\\(n^2\\)"
+    },
+    {
+        "Name": "Gnome Sort",
+        "Best": "\\(n\\log n\\)",
+        "Average": "\\(n^{\\dfrac{4}{3}}\\)",
+        "Worst": "\\(n^{\\dfrac{3}{2}}\\)"
+    },
+    {
+        "Name": "Bitonic Sort",
+        "Best": "\\(n\\)",
+        "Average": "\\(n^2\\)",
+        "Worst": "\\(n^2\\)"
+    },
+    {
+        "Name": "Bogo Sort",
+        "Best": "\\(n\\)",
+        "Average": "\\(n\\times n!\\)",
+        "Worst": "\\(\\infty\\)"
+    }
+]

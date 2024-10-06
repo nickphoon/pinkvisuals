@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Compare Algorithms</title>
+  <!-- CSS FILE -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <style>
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      max-height: 200px;
+      margin-bottom: 10px;
+    }
+    .timer {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .hidden-text {
+      display: none;
+    }
+    .fast-algo-text {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="home.html">Home</a>
+    <h1 style="font-family: Monospace;">Compare Sorting Algorithm</h1>
+    <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+  </nav>
+ 
+  <script>
+    function resetPage() {
+        location.reload(); // Reload the current page
+    }
+</script>
+
+ 
+  <div class="container">
+    <div class="chart-container">
+        <h2 id="sortName1" style="text-align: center;">Bubble Sort</h2>
+        <div class="timer" id="timer1">00:00</div>
+        <h2 class="fast-algo-text" id="fastText1" style="text-align: center;" hidden>Algorithm 1 is faster!</h2>
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort Algorithm 1</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink1">
+              <a class="dropdown-item" href="#" onclick="setSortAlgorithm('bubble', 1)">Bubble Sort</a>
+              <a class="dropdown-item" href="#" onclick="setSortAlgorithm('selection', 1)">Selection Sort</a>
+              <a class="dropdown-item" href="#" onclick="setSortAlgorithm('insertion', 1)">Insertion Sort</a>
+            </div>
+          </div>
+      <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart-container">
+      <h2 id="sortName2" style="text-align: center;">Bubble Sort</h2>
+      <div class="timer" id="timer2">00:00</div>
+      <h2 class="fast-algo-text" id="fastText2" style="text-align: center;" hidden>Algorithm 2 is faster!</h2>
+      <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Sort Algorithm 2
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink2">
+            <a class="dropdown-item" href="#" onclick="setSortAlgorithm('bubble', 2)">Bubble Sort</a>
+            <a class="dropdown-item" href="#" onclick="setSortAlgorithm('selection', 2)">Selection Sort</a>
+            <a class="dropdown-item" href="#" onclick="setSortAlgorithm('insertion', 2)">Insertion Sort</a>
+          </div>
+        </div>
+    <canvas id="chart2"></canvas>
+  </div>
+  <div class="button-container">
+    <div class="d-flex justify-content-center mb-3">
+      <div class="mr-3">
+        <button id="randomizeButton" class="btn btn-secondary" onclick="randomizeData()">Randomize Data</button>
+      </div>
+      <div class="dropdown mr-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort Data</button>
+        <div class="dropdown-menu" aria-labelledby="sortDropdownButton">
+          <a class="dropdown-item" href="#" onclick="defaultSort('ascending')">Ascending</a>
+          <a class="dropdown-item" href="#" onclick="defaultSort('descending')">Descending</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="quantityButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quantity</button>
+        <div class="dropdown-menu" aria-labelledby="quantityButton">
+          <a class="dropdown-item" href="#" onclick="dataQuantity(10)">10</a>
+          <a class="dropdown-item" href="#" onclick="dataQuantity(20)">20</a>
+          <a class="dropdown-item" href="#" onclick="dataQuantity(50)">50</a>
+          <a class="dropdown-item" href="#" onclick="dataQuantity(100)">100</a>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap mb-3">
+      <div>
+        <button id="start-btn" class="btn btn-success" onclick="startVisualization(data1,data2)">Start Sorting</button>
+        <button id="pause-btn" class="btn btn-danger" onclick="pauseVisualization()">Pause Sorting</button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mb-3">
+      <div class="slidecontainer">
+        <input type="range" min="0.0001" max="100" value="50" class="slider" id="myRange">
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/sort.js"></script>
+  <script>
+    let timer1; // Global variable to store the timer reference for timer1
+    let timer2; // Global variable to store the timer reference for timer2
+    let sortingFinished1 = false;
+    let sortingFinished2 = false;
+    let chart1;
+    let chart2;
+    let data1 = [...Array(100)].map(() => Math.floor(Math.random() * 1000));
+    let data2 = JSON.parse(JSON.stringify(data1));
+    let sortAlgorithm1 = 'bubble';
+    let sortAlgorithm2 = 'bubble';
+    let sortAlgorithm = 'bubble';
+    let colors; // Declare colors array outside of the function
+    let currentIteration2 = 0;
+    // let currentIteration = 0;
+    let currentIteration1 =0;
+  function dataQuantity(dataQuantity){
+  data1 = [...Array(dataQuantity)].map(() => Math.floor(Math.random() * 1000));
+  data2 = JSON.parse(JSON.stringify(data1));
+  randomizeData();
+}
+function defaultSort(sortOrder) {
+  var sortedData1 = data1.slice(); // Create a deep copy of data1
+  sortedData1.sort(function (a, b) {
+    if (sortOrder === 'ascending') {
+      return a - b;
+    } else if (sortOrder === 'descending') {
+      return b - a;
+    }
+    return 0;
+  });
+  var sortedData2 = sortedData1.slice(); // Create a deep copy of sortedData1 for data2
+  data1 = sortedData1;
+  data2 = sortedData2;
+  var labels = data1.map(value => value.toString());
+  if (chart1) {
+    chart1.data.datasets[0].data = sortedData1;
+    chart1.data.labels = labels;
+    chart1.update();
+  }
+  if (chart2) {
+    chart2.data.datasets[0].data = sortedData2;
+    chart2.data.labels = labels;
+    chart2.update();
+  }
+}
+    function displayChart2(){
+      const ctx2 = document.getElementById('chart2');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: data2.map(value => value.toString()),
+          datasets: [{
+            label: 'Sorting algorithm 1',
+            data: data2,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          animation: false,
+          responsive: true,
+          maintainAspectRatio: false,
+          aspectRatio: 0.5,
+          scales: {
+            x: {
+              display: true,
+              title: {
+                display: true,
+                text: 'Data'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Value'
+              }
+            }
+          }
+        }
+      });
+    }
+    function displayCharts() {
+      const ctx1 = document.getElementById('chart1');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: data1.map(value => value.toString()),
+          datasets: [{
+            label: 'Sorting algorithm 1',
+            data: data1,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          animation: false,
+          responsive: true,
+          maintainAspectRatio: false,
+          aspectRatio: 0.5,
+          scales: {
+            x: {
+              display: true,
+              title: {
+                display: true,
+                text: 'Data'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Value'
+              }
+            }
+          }
+        }
+      });
+    }
+    function randomizeData() {
+      data1 = data1.map(() => Math.floor(Math.random() * 1000));
+      data2 = JSON.parse(JSON.stringify(data1));
+      chart1.data.labels = data1.map(value => value.toString());
+      chart1.data.datasets[0].data = data1;
+      chart1.update();
+      chart2.data.labels = data2.map(value => value.toString());
+      chart2.data.datasets[0].data = data2;
+      chart2.update();
+    }
+   
+    function setSortAlgorithm(algorithm, num) {
+      if(num==1){
+        document.getElementById('dropdownMenuLink1').innerText = getAlgorithmName(algorithm);
+        document.getElementById('sortName1').innerText = getAlgorithmName(algorithm);
+        sortAlgorithm1 = algorithm;
+      }
+      else if(num==2){
+        document.getElementById('dropdownMenuLink2').innerText = getAlgorithmName(algorithm);
+        document.getElementById('sortName2').innerText = getAlgorithmName(algorithm);
+        sortAlgorithm2 = algorithm;
+      }
+    }
+    async function startVisualization() {
+  sortingPaused = false;
+  sortingFinished1 = false;
+  sortingFinished2 = false;
+  document.getElementById('randomizeButton').setAttribute('disabled', true);
+  document.getElementById('sortDropdownButton').setAttribute('disabled', true);
+  document.getElementById('start-btn').setAttribute('disabled', true);
+  document.getElementById('pause-btn').removeAttribute('disabled');
+  document.getElementById('quantityButton').setAttribute('disabled', true);
+  // Hide the fast algorithm text elements
+  // Hide the fast algorithm text elements
+  document.getElementById('fastText1').setAttribute('hidden', true);
+  document.getElementById('fastText2').setAttribute('hidden', true);
+  startTimer(1);
+  startTimer(2);
+  await Promise.all([
+  startSorting(data1, 1, currentIteration1),
+  startSorting(data2, 2, currentIteration2)
+]);
+}
+function startTimer(num) {
+  const startTime = new Date().getTime();
+  const timerElementId = num === 1 ? 'timer1' : 'timer2';
+  const timerElement = document.getElementById(timerElementId);
+  const fastTextId = num === 1 ? 'fastText1' : 'fastText2'; // Get the corresponding fast text element ID
+  const fastTextElement = document.getElementById(fastTextId); // Get the fast text element
+  // Clear the previous timer if it exists
+  if (num === 1 && timer1) {
+    clearInterval(timer1);
+  } else if (num === 2 && timer2) {
+    clearInterval(timer2);
+  }
+  // Update the timer every 10 milliseconds
+  const timer = setInterval(() => {
+    if (num === 1 && sortingFinished1) {
+      clearInterval(timer);
+      return;
+    } else if (num === 2 && sortingFinished2) {
+      clearInterval(timer);
+      return;
+    }
+    const currentTime = new Date().getTime();
+    const elapsedTime = currentTime - startTime;
+    // Calculate seconds and milliseconds
+    const seconds = Math.floor(elapsedTime / 1000);
+    const milliseconds = elapsedTime % 1000;
+    // Display the elapsed time in the format "SS:SSS"
+    timerElement.textContent = `${seconds < 10 ? '0' : ''}${seconds}.${milliseconds < 100 ? '0' : ''}${milliseconds < 10 ? '0' : ''}${milliseconds}`;
+  }, 10);
+  // Store the timer reference in the global variable
+  if (num === 1) {
+    timer1 = timer;
+  } else if (num === 2) {
+    timer2 = timer;
+  }
+}
+function determineFastAlgorithm() {
+  if (sortingFinished1 && sortingFinished2) {
+    const elapsedTime1 = parseFloat(document.getElementById('timer1').textContent);
+    const elapsedTime2 = parseFloat(document.getElementById('timer2').textContent);
+    if (elapsedTime1 < elapsedTime2) {
+      return 1;
+    } else {
+      return 2;
+    }
+  } else {
+    return 0; // No algorithm has finished yet
+  }
+}
+function displayFastAlgorithm(fastAlgorithm) {
+  // Display the fast algorithm text based on the determined fast algorithm
+  const fastTextElementId = fastAlgorithm === 1 ? 'fastText1' : 'fastText2';
+  const fastTextElement = document.getElementById(fastTextElementId);
+  const sortAlgorithm = fastAlgorithm === 1 ? sortAlgorithm1 : sortAlgorithm2;
+  const algorithmName = getAlgorithmName(sortAlgorithm);
+  // Unhide the corresponding fast algorithm text
+  fastTextElement.textContent = `${algorithmName} is faster!`;
+  fastTextElement.removeAttribute('hidden');
+}
+async function startSorting(data, num, currentIteration) {
+  let chart, sortAlgorithm, fastTextElement;
+  if (num === 1) {
+    chart = chart1;
+    sortAlgorithm = sortAlgorithm1;
+    fastTextElement = document.getElementById('fastText1');
+  } else if (num === 2) {
+    chart = chart2;
+    sortAlgorithm = sortAlgorithm2;
+    fastTextElement = document.getElementById('fastText2');
+  }
+  sortingPaused = false;
+  colors = Array(data.length).fill('rgba(0, 0, 0, 0.5)'); // Initialize colors array
+  var delay = parseInt(document.getElementById('myRange').value); // Read the value from the range input
+  switch (sortAlgorithm) {
+    case 'bubble':
+      await bubbleSort(data, delay, chart, currentIteration);
+      break;
+    case 'selection':
+      await selectionSort(data, delay, chart, currentIteration);
+      break;
+    case 'insertion':
+      await insertionSort(data, delay, chart, currentIteration);
+      break;
+    case 'merge':
+      await mergeSort(data, delay, chart, currentIteration);
+      break;
+    case 'quick':
+      await quickSort(data, delay, chart, currentIteration);
+      break;
+    default:
+      break;
+  }
+  if (num === 1) {
+    sortingFinished1 = true;
+  } else if (num === 2) {
+    sortingFinished2 = true;
+  }
+  // Display the fast algorithm text if the other algorithm has already finished
+  const fastAlgorithm = determineFastAlgorithm();
+  if (fastAlgorithm !== 0) {
+    displayFastAlgorithm(fastAlgorithm);
+  }
+}
+
+
+
+
+  function pauseVisualization() {
+    sortingPaused = true;
+    document.getElementById('pause-btn').setAttribute('disabled', true);
+    document.getElementById('start-btn').removeAttribute('disabled');
+  }
+
+  function defaultSort(sortOrder) {
+      var sortedData = data1.slice();
+      sortedData.sort(function (a, b) {
+        if (sortOrder === 'ascending') {
+          return a - b;
+        } else if (sortOrder === 'descending') {
+          return b - a;
+        }
+        return 0;
+      });
+      data1 = sortedData;
+      data2 = JSON.parse(JSON.stringify(data1));
+      labels = data1.map(value => value.toString());
+      chart1.data.datasets[0].data = sortedData;
+      chart1.data.labels = labels;
+      chart1.update();
+      labels2 = data2.map(value => value.toString());
+      chart2.data.datasets[0].data = data2;
+      chart2.data.labels = labels2;
+      chart2.update();
+    }
+    displayCharts();
+    displayChart2();
+  </script>
+  <!-- Add Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+</html>

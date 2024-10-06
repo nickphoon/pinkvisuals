@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Time Complexity</title>
+
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <!-- <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+    <!-- BOOTSTRAP -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    
+    
+    <script src="js/timeComplexity.js" ></script>
+    <script src="js/mathjax-config.js" async></script>
+    <script>
+        
+    </script>
+    <!-- <script type="text/javascript" id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script> -->
+        
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Home</a>
+        <h1 style="font-family: Monospace;">Time Complexity Table</h1>
+        <button class="btn btn-danger" onclick="resetPage()">Reset</button>
+    </nav>
+    
+    <script>
+        function resetPage() {
+            location.reload(); // Reload the current page
+        }
+    </script>
+
+ 
+
+    <section>
+        <h2 style="font-style: italic; text-align: center;">This is a summary page of popular algorithms' time
+            complexities and how they compare to each other</h2>
+        <h2 style="text-align: center;">Select Which Type of Time Complexity</h2>
+    </section>
+
+    
+    
+    <div class="button-container">
+        <div class="d-flex justify-content-center mb-3">
+            <button id="sortingAlgoTable" class="btn btn-info mr-2">Sorting Time Complexity</button>
+            <button id="mazingAlgoTable" class="btn btn-info mr-2">Mazing Time Complexity</button>
+            <button id="searchAlgoTable" class="btn btn-info mr-2">Searching Time Complexity</button>
+            <button id="dataStructAlgoTable" class="btn btn-info mr-2">Data Structures Time Complexity</button>
+            
+        </div>
+
+        <div class="d-flex justify-content-center mb-4">
+            <button id="bestDataStructTable" class="btn btn-info mr-2" style="display: none;">Best</button>
+            <button id="averageDataStructTable" class="btn btn-info mr-2" style="display: none;">Average</button>
+            <button id="worstDataStructTable" class="btn btn-info mr-2" style="display: none;">Worst</button>
+            
+        </div>
+    </div>
+    <section id="dataStructHeader" style="display: none;">
+        <h2 style="text-align: center;"></h2>
+      </section>
+    <table id="sort" class="display compact mx-auto" style="width:80%; display:none;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Best</th>
+                <th>Average</th>
+                <th>Worst</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <table id="dataStruct" class="display compact mx-auto" style="width:80%; display:none;">
+        <thead>
+            <tr>
+            <th>Data Structure</th>
+            <th>Access</th>
+            <th>Search</th>
+            <th>Insertion</th>
+            <th>Deletion</th>
+            </tr>
+        </thead>
+        <tbody id="dataStruct-table-body">
+            <!-- Add data rows here -->
+        </tbody>
+    </table>
+    
+</body>
+
+</html>
